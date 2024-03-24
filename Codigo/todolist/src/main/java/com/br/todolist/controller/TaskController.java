@@ -39,9 +39,9 @@ public class TaskController {
 	@GetMapping(path = "/getAllTask")
 	private ResponseEntity<Object> getAllTask() {
 		try {
-			if (taskService.findAllTask().isEmpty()) {
-				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			}
+//			if (taskService.findAllTask().isEmpty()) {
+//				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//			}
 
 			return new ResponseEntity<Object>(taskService.findAllTask(), HttpStatus.OK);
 		} catch (Exception e) {

@@ -15,35 +15,31 @@ public class TaskService {
 	TaskRepository taskRepository;
 	
 	public Task createTask(Task novaTask) {
-		return null;
-		//return taskRepository.save(novaTask);
+		return taskRepository.save(novaTask);
 	}
 	
 	
 	public List<Task> findAllTask() {
-		return null;
-		//return taskRepository.findAll();
+		
+		return taskRepository.findAll();
 	}
 
 
 	public Task findTask(Long id) {
-		return null;
-		//return taskRepository.findById(id).orElse(null);
+		return taskRepository.findById(id).orElse(null);
 	}
 	
 	
 	public Task updateTask(Task task) {
 		
-		Task task1 = new Task();
-		//Task task1 = taskRepository.findById(task.getId()).orElse(null);
+		Task task1 = taskRepository.findById(task.getId()).orElse(null);
 		
 		if(task1 != null ) {
 			task1.setDescription(task.getDescription());
 			task1.setDeleted(task.getDeleted());
 			task1.setDone(task.getDone());
 		}
-		return null;
-		//return taskRepository.save(task1);
+		return taskRepository.save(task1);
 	}
 	
 	
