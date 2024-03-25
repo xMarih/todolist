@@ -23,8 +23,7 @@ public class TaskController {
 
 	@Autowired
 	TaskService taskService;
-
-//	@Operation(summary = "Lista todas as tarefas da lista")
+	@Operation(summary = "Cria tarefa")
 	@PostMapping(path = "/createTask")
 	private ResponseEntity<Object> createTask(Task task) {
 		try {
@@ -35,7 +34,7 @@ public class TaskController {
 		}
 	}
 
-	@Operation(summary = "Lista todas as tarefas da lista")
+	@Operation(summary = "Lista todas as tarefas")
 	@GetMapping(path = "/getAllTask")
 	private ResponseEntity<Object> getAllTask() {
 		try {
@@ -49,8 +48,8 @@ public class TaskController {
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
-	@GetMapping(path = "/getTask")
+	@Operation(summary = "Busca tarefa por id")
+	@GetMapping(path = "/getTaskById")
 	private ResponseEntity<Object> getTask(Long id) {
 		try {
 			return new ResponseEntity<Object>(taskService.findTask(id), HttpStatus.OK);
@@ -59,7 +58,8 @@ public class TaskController {
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+	
+	@Operation(summary = "Atualiza tarefa por id")
 	@PutMapping(path = "/updateTask")
 	private ResponseEntity<Object> updateTask(Task task) {
 		try {
@@ -79,6 +79,7 @@ public class TaskController {
 //		}
 //	}
 
+	@Operation(summary = "Delete tarefa por id")
 	@DeleteMapping(path = "/deleteTask")
 	private ResponseEntity<Object> deleteTask(Long id) {
 		try {
