@@ -34,20 +34,20 @@ public class TaskService {
                  .collect(Collectors.toList());
 		 
 		LocalDate dataAtual = LocalDate.now();
-//		for (Task task : tasksWithDeadline) {
-//			LocalDate dataInicioTarefa = task.getStartDate().toLocalDate();
-//			LocalDate dataTerminoEsperada = dataInicioTarefa.plusDays(task.getDeadLine());
-//			long diasParaTermino = ChronoUnit.DAYS.between(dataAtual, dataTerminoEsperada);
-//			
-//			if(diasParaTermino > 0){
-//				task.setStatus("O prazo para essa tarefa expira em: " + diasParaTermino + " dias");
-//			}
-//			else if(diasParaTermino == 0){
-//				task.setStatus("O prazo para essa tarefa expira hoje");
-//			}else if(diasParaTermino < 0){
-//				task.setStatus("Essa tarefa está atrasada em " + diasParaTermino + " dias");
-//			}
-//		}
+		for (Task task : tasksWithDeadline) {
+			LocalDate dataInicioTarefa = task.getStartDate().toLocalDate();
+			LocalDate dataTerminoEsperada = dataInicioTarefa.plusDays(task.getDeadLine());
+			long diasParaTermino = ChronoUnit.DAYS.between(dataAtual, dataTerminoEsperada);
+			
+			if(diasParaTermino > 0){
+				task.setStatus("O prazo para essa tarefa expira em: " + diasParaTermino + " dias");
+			}
+			else if(diasParaTermino == 0){
+				task.setStatus("O prazo para essa tarefa expira hoje");
+			}else if(diasParaTermino < 0){
+				task.setStatus("Essa tarefa está atrasada em " + diasParaTermino + " dias");
+			}
+		}
 		return tasksWithDeadline;
 		
 		
@@ -62,14 +62,14 @@ public class TaskService {
 		 
 		LocalDate dataAtual = LocalDate.now();
 
-//		for (Task task : tasksWithDoDate) {
-//			LocalDate dataInicioTarefa = task.getStartDate().toLocalDate();
-//
-//			if (dataAtual.isAfter(dataInicioTarefa))
-//				task.setStatus(
-//						"Sua tarefa está " + 
-//				ChronoUnit.DAYS.between(dataInicioTarefa, dataAtual) + "dias em atraso");
-//		}
+		for (Task task : tasksWithDoDate) {
+			LocalDate dataInicioTarefa = task.getStartDate().toLocalDate();
+
+			if (dataAtual.isAfter(dataInicioTarefa))
+				task.setStatus(
+						"Sua tarefa está " + 
+				ChronoUnit.DAYS.between(dataInicioTarefa, dataAtual) + "dias em atraso");
+		}
 		return tasksWithDoDate;
 	}
 
@@ -91,6 +91,19 @@ public class TaskService {
 			throw new Exception ("Esse tipo de tarefa não deve ter uma Data prazo");
 		}
 		return taskRepository.save(task);
+	}
+	
+	public List<Task> createMultipleTaskWtihDeadLine(List<Task> listaTask){
+		for (Task task : listaTask) {
+			taskRepository.save(task);
+		}
+		return taskRepository.findAll();
+	}
+	public List<Task> createMultipleTaskWtihDoDate(List<Task> listaTask){
+		for (Task task : listaTask) {
+			taskRepository.save(task);
+		}
+		return taskRepository.findAll();
 	}
 
 	public Task createTask(Task novaTask) {
