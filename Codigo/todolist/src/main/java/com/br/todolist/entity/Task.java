@@ -1,10 +1,9 @@
 package com.br.todolist.entity;
 
-import java.util.List;
+import java.sql.Date;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -23,6 +22,16 @@ public class Task {
 	private Boolean done;
 
 	private Boolean deleted;
+	
+	private Date doDate;
+	
+	private Date startDate;
+	
+	private Long deadLine;
+	
+	private Priorities priorities;
+	
+	private String status; 
 
 
 }

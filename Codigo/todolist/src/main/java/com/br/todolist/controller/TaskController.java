@@ -23,6 +23,65 @@ public class TaskController {
 
 	@Autowired
 	TaskService taskService;
+	
+	@Operation(summary = "Lista todas as tarefas com data")
+	@GetMapping(path = "/getTasksWithDoDate")
+	private ResponseEntity<Object> getTasksWithDoDate() {
+		try {
+			return new ResponseEntity<Object>(taskService.findTasksWithDoDate(), HttpStatus.OK);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@Operation(summary = "Lista todas as tarefas com prazo")
+	@GetMapping(path = "/getTasksWtihDeadLine")
+	private ResponseEntity<Object> getTasksWtihDeadLine() {
+		try {
+			return new ResponseEntity<Object>(taskService.findTasksWtihDeadLine(), HttpStatus.OK);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@Operation(summary = "Lista todas as tarefas Livre")
+	@GetMapping(path = "/getAllFreeTasks")
+	private ResponseEntity<Object> getAllFreeTasks() {
+		try {
+			return new ResponseEntity<Object>(taskService.findAllFreeTasks(), HttpStatus.OK);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
+	@Operation(summary = "Cria tarefa com data")
+	@PostMapping(path = "/createTaskWithDoDate")
+	private ResponseEntity<Object> createTaskWithDoDate(Task task) {
+		try {
+			return new ResponseEntity<Object>(taskService.createTaskWithDoDate(task), HttpStatus.CREATED);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@Operation(summary = "Cria tarefa com prazo")
+
+	@PostMapping(path = "/createTaskWtihDeadLine")
+	private ResponseEntity<Object> createTaskWtihDeadLine(Task task) {
+		try {
+			return new ResponseEntity<Object>(taskService.createTaskWtihDeadLine(task), HttpStatus.CREATED);
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
 	@Operation(summary = "Cria tarefa")
 	@PostMapping(path = "/createTask")
 	private ResponseEntity<Object> createTask(Task task) {
@@ -38,16 +97,13 @@ public class TaskController {
 	@GetMapping(path = "/getAllTask")
 	private ResponseEntity<Object> getAllTask() {
 		try {
-//			if (taskService.findAllTask().isEmpty()) {
-//				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//			}
-
 			return new ResponseEntity<Object>(taskService.findAllTask(), HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.println(e);
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
 	@Operation(summary = "Busca tarefa por id")
 	@GetMapping(path = "/getTaskById")
 	private ResponseEntity<Object> getTask(Long id) {
@@ -69,15 +125,6 @@ public class TaskController {
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-//	@PatchMapping(path = "/updateSubTask")
-//	private ResponseEntity<Object> updateSubTask(Task task) {
-//		try {
-//			return new ResponseEntity<Object>("ok", HttpStatus.OK);
-//		} catch (Exception e) {
-//			System.out.println(e);
-//			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-//		}
-//	}
 
 	@Operation(summary = "Delete tarefa por id")
 	@DeleteMapping(path = "/deleteTask")
