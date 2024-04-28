@@ -1,4 +1,5 @@
-DROP TABLE IF EXISTS task;
+DROP TABLE IF EXISTS Task;
+
 CREATE TABLE Task (
     id NUMBER PRIMARY KEY AUTO_INCREMENT,
     description VARCHAR(255),
@@ -11,25 +12,13 @@ CREATE TABLE Task (
     status VARCHAR(50)
 );
 
-
--- -- Inserção de duas tarefas
--- INSERT INTO Task (description, done, deleted, doDate, startDate, deadline, priorities, status)
--- VALUES ('Task 1', false, false, '2023-04-15', '2023-04-01', 10, 'High', ''),
---        ('Task 2', true, false, '2023-05-01', '2023-03-01', 20, 'Low', '');
-
--- -- Inserção de mais duas tarefas para as queries da classe de repositório
--- INSERT INTO Task (description, done, deleted, doDate, startDate, deadline, priorities, status)
--- VALUES ('Task 3', true, false, NULL, '2023-03-10', NULL, 'Medium', ''),
---        ('Task 4', false, false, '2023-06-10', '2023-04-10', 30, 'Medium', '');
-
 -- INSERT INTO Task (description, done, deleted, doDate, startDate, deadline, priorities, status)
 -- VALUES 
--- ('Task 5', false, false, '2023-07-01', '2023-05-01', 15, 'High', 'In Progress'),
-
--- ('Task 6', true, true, '2023-08-01', '2023-06-01', 25, 'Low', 'Archived'),
-
--- ('Task 7', false, false, '2023-07-15', '2023-05-15', 20, 'Medium', 'In Progress'),
-
--- ('Task 8', true, false, '2023-09-01', '2023-07-01', 30, 'High', 'Completed');
-
-
+--     ('Task 10', false, false, '2023-04-15', '2023-04-01', 10, NULL, NULL),
+--     ('Task 20', false, false, '2023-05-01', '2023-03-01', 20, NULL, NULL),
+--     ('Task 30', false, false, NULL, '2023-03-10', NULL, NULL, NULL),
+--     ('Task 40', false, false, '2023-06-10', '2023-04-10', 30, NULL, NULL),
+--     ('Task 50', false, false, '2023-07-01', '2023-05-01', 15, NULL, NULL),
+--     ('Task 60', false, false, '2023-08-01', '2023-06-01', 25, NULL, NULL),
+--     ('Task 70', false, false, '2023-07-15', '2023-05-15', 20, NULL, NULL),
+--     ('Task 80', false, false, '2023-09-01', '2023-07-01', 30, NULL, NULL);

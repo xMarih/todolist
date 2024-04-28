@@ -13,13 +13,13 @@ import com.br.todolist.entity.Task;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
-	@Query("FROM Task WHERE done = true OR (doDate IS NULL AND deadline IS NULL)")
-	List<Task> findAllFreeTasks();
-
-	@Query("From Task where deadLine is not null order by deadLine")
-	List<Task> findTasksWtihDeadLine();
-
-	@Query("FROM Task WHERE doDate IS NOT NULL ORDER BY doDate")
-	List<Task> findTasksWithDoDate();
+//	@Query("FROM Task WHERE done = true OR (doDate IS NULL AND deadline IS NULL)")
+//	List<Task> findAllFreeTasks();
+//
+//	@Query("From Task where deadLine is not null order by deadLine")
+//	List<Task> findTasksWtihDeadLine();
+//
+//	@Query("FROM Task WHERE doDate IS NOT NULL ORDER BY doDate")
+//	List<Task> findTasksWithDoDate();
 }
 
