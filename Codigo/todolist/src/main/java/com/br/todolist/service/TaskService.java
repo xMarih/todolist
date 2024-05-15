@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.br.todolist.entity.Task;
@@ -16,6 +18,10 @@ public class TaskService {
 
 	@Autowired
 	TaskRepository taskRepository;
+
+	public TaskService(TaskRepository tasksRepository) {
+		// TODO Auto-generated constructor stub
+	}
 
 	public List<Task> findAllFreeTasks() {
        return taskRepository.findAll().stream()
@@ -110,8 +116,8 @@ public class TaskService {
 		return taskRepository.save(novaTask);
 	}
 
-	public List<Task> findAllTask() {
-		return taskRepository.findAll();
+	public Page<Task> findAllTask(Pageable pageable) {
+		return (Page<Task>) taskRepository.findAll();
 	}
 
 	public Task findTask(Long id) {
