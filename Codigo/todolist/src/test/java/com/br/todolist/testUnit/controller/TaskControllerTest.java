@@ -7,24 +7,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.br.todolist.entity.Task;
 import com.br.todolist.mock.TaskMock;
 import com.br.todolist.repository.TaskRepository;
 import com.br.todolist.service.TaskService;
 
-import org.junit.platform.runner.JUnitPlatform;
 
 @ExtendWith(MockitoExtension.class)
-@RunWith(JUnitPlatform.class)
+@ExtendWith({ SpringExtension.class, MockitoExtension.class })
 public class TaskControllerTest {
 	@Mock
 	TaskRepository tasksRepository;

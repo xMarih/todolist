@@ -1,0 +1,15 @@
+@startuml
+actor User
+User -> TaskController: GET /task/getTasksWithDeadline
+activate TaskController
+TaskController -> TaskService: findTasksWithDeadline()
+activate TaskService
+TaskService -> TaskRepository: findTasksWithDeadline()
+activate TaskRepository
+TaskRepository -> TaskService: List<Task>
+deactivate TaskRepository
+TaskService -> TaskController: List<Task>
+deactivate TaskService
+TaskController -> User: ResponseEntity<Object>
+deactivate TaskController
+@enduml

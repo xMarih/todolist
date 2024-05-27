@@ -1,10 +1,9 @@
-package com.labdessoft.roteiro01.mock;
-
-import com.labdessoft.roteiro01.entity.Task;
-
+package com.br.todolist;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+
+import com.br.todolist.entity.Task;
 
 import java.util.ArrayList;
 import java.util.List;

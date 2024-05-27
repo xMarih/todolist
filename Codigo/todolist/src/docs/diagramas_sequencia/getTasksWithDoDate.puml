@@ -1,0 +1,16 @@
+@startuml
+actor User
+User -> TaskController: GET /task/getTasksWithDoDate
+activate TaskController
+TaskController -> TaskService: findTasksWithDoDate()
+activate TaskService
+TaskService -> TaskRepository: findTasksWithDoDate()
+activate TaskRepository
+TaskRepository -> TaskService: List<Task>
+deactivate TaskRepository
+TaskService -> TaskController: List<Task>
+deactivate TaskService
+TaskController -> User: ResponseEntity<Object>
+deactivate TaskController
+@enduml
+
