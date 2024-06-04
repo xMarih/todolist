@@ -1,0 +1,14 @@
+@startuml
+actor User
+User -> TaskController: DELETE /task/deleteTask
+activate TaskController
+TaskController -> TaskService: deleteTask(id)
+activate TaskService
+TaskService -> TaskRepository: deleteById(id)
+activate TaskRepository
+TaskRepository -> TaskService: void
+deactivate TaskRepository
+deactivate TaskService
+TaskController -> User: ResponseEntity<Object>
+deactivate TaskController
+@enduml

@@ -1,7 +1,5 @@
 package com.br.todolist.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,29 +58,6 @@ public class TaskController {
 	}
 	
 	
-//	@Operation(summary = "Cria varias tarefa com data")
-//	@PostMapping(path = "/createMultipleTaskWtihDeadLine")
-//	private ResponseEntity<Object> createMultipleTaskWtihDeadLine(List<Task> task) {
-//		try {
-//			return new ResponseEntity<Object>(taskService.createMultipleTaskWtihDeadLine(task), HttpStatus.CREATED);
-//		} catch (Exception e) {
-//			System.out.println(e);
-//			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-//		}
-//	}
-//	
-//	@Operation(summary = "Cria varias tarefa com data")
-//	@PostMapping(path = "/createMultipleTaskWtihDoDate")
-//	private ResponseEntity<Object> createMultipleTaskWtihDoDate(List<Task> task) {
-//		try {
-//			return new ResponseEntity<Object>(taskService.createMultipleTaskWtihDoDate(task), HttpStatus.CREATED);
-//		} catch (Exception e) {
-//			System.out.println(e);
-//			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-//		}
-//	}
-	
-	
 	@Operation(summary = "Cria tarefa com data")
 	@PostMapping(path = "/createTaskWithDoDate")
 	private ResponseEntity<Object> createTaskWithDoDate(Task task) {
@@ -122,7 +97,7 @@ public class TaskController {
 	@GetMapping(path = "/getAllTask")
 	private ResponseEntity<Object> getAllTask() {
 		try {
-			return new ResponseEntity<Object>(taskService.findAllTask(), HttpStatus.OK);
+			return new ResponseEntity<Object>(taskService.findAllTask(null), HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.println(e);
 			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

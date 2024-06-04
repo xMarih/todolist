@@ -1,0 +1,15 @@
+@startuml
+actor User
+User -> TaskController: POST /task/createTaskWithDoDate
+activate TaskController
+TaskController -> TaskService: createTaskWithDoDate(task)
+activate TaskService
+TaskService -> TaskRepository: save(task)
+activate TaskRepository
+TaskRepository -> TaskService: Task
+deactivate TaskRepository
+TaskService -> TaskController: Task
+deactivate TaskService
+TaskController -> User: ResponseEntity<Object>
+deactivate TaskController
+@enduml
