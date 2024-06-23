@@ -1,26 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Box, TextField, Button, MenuItem, Select, InputLabel, FormControl, Typography } from "@mui/material";
 
-export const TodoForm = ({ addTodo, open, onClose }) => {
-  const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("");
-  const [taskType, setTaskType] = useState("");
+export const EditTodoForm = ({ task, saveTodo, open, onClose }) => {
+  const [description, setDescription] = useState(task.description);
+  const [priority, setPriority] = useState(task.priority);
+  const [taskType, setTaskType] = useState(task.type);
   const [type, setType] = useState("LIVRE");
-  const [dueDate, setDueDate] = useState("");
-  const [dueDays, setDueDays] = useState("");
+  const [dueDate, setDueDate] = useState(task.dueDate || "");
+  const [dueDays, setDueDays] = useState(task.dueDays || "");
+
+  useEffect(() => {
+    if (task.dueDate && task.dueDays && task.dueDays !== 0) {
+      setType("PRAZO");
+    } else if (task.dueDate) {
+      setType("DATA");
+    } else {
+      setType("LIVRE");
+    }
+  }, [task.dueDate, task.dueDays]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newTask = {
+    const updatedTask = {
       description,
       type: taskType,
       priority,
       dueDate: type === "DATA" ? dueDate : type === "PRAZO" ? new Date(Date.now() + dueDays * 24 * 60 * 60 * 1000).toISOString().split('T')[0] : null,
       dueDays: type === "PRAZO" ? dueDays : null,
+      status: task.status
     };
 
-    await addTodo(newTask);
+    try {
+      await saveTodo(task.id, updatedTask);
+    } catch (error) {
+      console.error('Erro ao atualizar a tarefa:', error);
+    }
+
     onClose();
   };
 
@@ -28,7 +44,7 @@ export const TodoForm = ({ addTodo, open, onClose }) => {
     <Modal open={open} onClose={onClose}>
       <Box sx={{ ...modalStyle, width: 400 }}>
         <Typography variant="h6" component="h2">
-          INSERIR NOVA TAREFA
+          ATUALIZAR TAREFA
         </Typography>
         <form onSubmit={handleSubmit}>
           <TextField
@@ -86,7 +102,7 @@ export const TodoForm = ({ addTodo, open, onClose }) => {
             />
           )}
           <Button type="submit" variant="contained" color="primary">
-            Adicionar
+            Salvar
           </Button>
         </form>
       </Box>
