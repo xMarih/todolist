@@ -1,5 +1,4 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://roteiro01-t4fw.onrender.com/api';
-
+axios.defaults.baseURL = 'https://todolist-icgc.onrender.com/todolist';
 export default axios;
