@@ -70,7 +70,7 @@ export const TodoWrapper = () => {
             <TableRow>
               <TableCell>Nome da Tarefa</TableCell>
               <TableCell>Tipo</TableCell>
-              {/* <TableCell>Tipo de Task</TableCell> */}
+              <TableCell>Tipo de Task</TableCell>
               <TableCell>Prioridade</TableCell>
               <TableCell>Data de Vencimento</TableCell>
               <TableCell>Prazo</TableCell>

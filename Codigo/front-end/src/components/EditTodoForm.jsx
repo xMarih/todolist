@@ -62,14 +62,14 @@ export const EditTodoForm = ({ task, saveTodo, open, onClose }) => {
               <MenuItem value="ALTA">ALTA</MenuItem>
             </Select>
           </FormControl>
-          {/* <FormControl fullWidth margin="normal">
+          <FormControl fullWidth margin="normal">
             <InputLabel>Tipo de Task</InputLabel>
             <Select value={taskType} onChange={(e) => setTaskType(e.target.value)}>
               <MenuItem value="NOVIDADE">NOVIDADE</MenuItem>
               <MenuItem value="BUG">BUG</MenuItem>
               <MenuItem value="APRIMORAMENTO">APRIMORAMENTO</MenuItem>
             </Select>
-          </FormControl> */}
+          </FormControl>
           <FormControl fullWidth margin="normal">
             <InputLabel>Tipo</InputLabel>
             <Select value={type} onChange={(e) => setType(e.target.value)}>
