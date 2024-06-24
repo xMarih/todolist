@@ -1,35 +1,10 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { Card, CardContent, Typography, IconButton, Select, MenuItem, FormControl, InputLabel, Grid } from "@mui/material";
+import { TableCell, TableRow, IconButton, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import { EditTodoForm } from "./EditTodoForm";
 import { DeleteTodoForm } from "./DeleteTodoForm";
 import todoService from '../services/todoService';
-
-const getStatusStyles = (status) => {
-  switch (status) {
-    case "FEITO":
-      return {
-        borderColor: "success.main",
-        backgroundColor: "rgba(76, 175, 80, 0.1)",
-      };
-    case "EM_PROGRESSO":
-      return {
-        borderColor: "warning.main",
-        backgroundColor: "rgba(255, 193, 7, 0.1)",
-      };
-    case "PENDENTE":
-      return {
-        borderColor: "info.main",
-        backgroundColor: "rgba(33, 150, 243, 0.1)",
-      };
-    default:
-      return {
-        borderColor: "default",
-        backgroundColor: "transparent",
-      };
-  }
-};
 
 export const TodoList = ({ task, deleteTodo, editTodo, saveTodo }) => {
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -90,58 +65,33 @@ export const TodoList = ({ task, deleteTodo, editTodo, saveTodo }) => {
 
   return (
     <>
-      <Grid item xs={12} sm={6} md={4}>
-        <Card className="Todo" 
-          sx={{ marginBottom: 2, height: 350, borderColor: getStatusStyles(status).borderColor, borderWidth: 2, borderStyle: "solid", backgroundColor: getStatusStyles(status).backgroundColor }}
-        >
-          <CardContent>
-            <Typography variant="h5" component="div">
-              {task.description}
-            </Typography>
-            <Typography color="textSecondary">
-              Tipo: {getType()}
-            </Typography>
-            <Typography color="textSecondary">
-              Tipo de Task: {task.type}
-            </Typography>
-            <Typography color="textSecondary">
-              Prioridade: {task.priority}
-            </Typography>
-            {task.dueDate && (
-              <Typography color="textSecondary">
-                Data de Vencimento: {task.dueDate}
-              </Typography>
-            )}
-            {task.dueDate && (
-              <Typography color="textSecondary">
-                Deadline: {calculateDueDays(task.dueDate)} dias
-              </Typography>
-            )}
-            {task.dueDays !== null && (
-              <Typography color="textSecondary">
-                Prazo: {task.dueDays}
-              </Typography>
-            )}
-            <FormControl fullWidth margin="normal">
-              <InputLabel>Status</InputLabel>
-              <Select value={status} onChange={handleStatusChange}>
-                <MenuItem value="A_FAZER">A fazer</MenuItem>
-                <MenuItem value="EM_PROGRESSO">Em progresso</MenuItem>
-                <MenuItem value="FEITO">Feito</MenuItem>
-                <MenuItem value="PENDENTE">Pendente</MenuItem>
-              </Select>
-            </FormControl>
-            <div>
-              <IconButton onClick={() => handleEditOpen(task)}>
-                <FontAwesomeIcon icon={faPenToSquare} />
-              </IconButton>
-              <IconButton onClick={handleDeleteOpen}>
-                <FontAwesomeIcon icon={faTrash} />
-              </IconButton>
-            </div>
-          </CardContent>
-        </Card>
-      </Grid>
+      <TableRow>
+        <TableCell>{task.description}</TableCell>
+        <TableCell>{getType()}</TableCell>
+        <TableCell>{task.type}</TableCell>
+        <TableCell>{task.priority}</TableCell>
+        <TableCell>{task.dueDate}</TableCell>
+        <TableCell>{task.dueDays}</TableCell>
+        <TableCell>
+          <FormControl fullWidth>
+            <InputLabel>Status</InputLabel>
+            <Select value={status} onChange={handleStatusChange}>
+              <MenuItem value="A_FAZER">A fazer</MenuItem>
+              <MenuItem value="EM_PROGRESSO">Em progresso</MenuItem>
+              <MenuItem value="FEITO">Feito</MenuItem>
+              <MenuItem value="PENDENTE">Pendente</MenuItem>
+            </Select>
+          </FormControl>
+        </TableCell>
+        <TableCell>
+          <IconButton onClick={() => handleEditOpen(task)}>
+            <FontAwesomeIcon icon={faPenToSquare} />
+          </IconButton>
+          <IconButton onClick={handleDeleteOpen}>
+            <FontAwesomeIcon icon={faTrash} />
+          </IconButton>
+        </TableCell>
+      </TableRow>
       {currentTask && (
         <EditTodoForm
           task={currentTask}

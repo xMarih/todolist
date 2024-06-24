@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { TodoForm } from "./TodoForm";
 import { TodoList } from "./TodoList";
 import todoService from '../services/todoService';
-import { Button, Grid, Card, CardContent, Typography } from "@mui/material";
+import { Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
 export const TodoWrapper = () => {
   const [todos, setTodos] = useState([]);
@@ -61,38 +61,36 @@ export const TodoWrapper = () => {
       <Typography variant="h3" component="h2">
         Lista de Tarefas
       </Typography>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card
-            sx={{
-              marginBottom: 2,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: 350,
-              borderColor: 'primary.main',
-              borderWidth: 2,
-              borderStyle: 'dashed',
-              backgroundColor: 'rgba(0, 0, 255, 0.05)',
-            }}
-          >
-            <CardContent>
-              <Button variant="contained" color="primary" onClick={() => setIsTodoFormOpen(true)}>
-                Adicionar Tarefa
-              </Button>
-            </CardContent>
-          </Card>
-        </Grid>
-        {todos.map((todo) => (
-          <TodoList
-            key={todo.id}
-            task={todo}
-            deleteTodo={deleteTodo}
-            editTodo={editTodo}
-            saveTodo={saveTodo}
-          />
-        ))}
-      </Grid>
+      <Button variant="contained" color="primary" onClick={() => setIsTodoFormOpen(true)} sx={{ marginBottom: 2 }}>
+        Adicionar Tarefa
+      </Button>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Nome da Tarefa</TableCell>
+              <TableCell>Tipo</TableCell>
+              <TableCell>Tipo de Task</TableCell>
+              <TableCell>Prioridade</TableCell>
+              <TableCell>Data de Vencimento</TableCell>
+              <TableCell>Prazo</TableCell>
+              <TableCell>Status</TableCell>
+              <TableCell>Ações</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {todos.map((todo) => (
+              <TodoList
+                key={todo.id}
+                task={todo}
+                deleteTodo={deleteTodo}
+                editTodo={editTodo}
+                saveTodo={saveTodo}
+              />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
       <TodoForm addTodo={addTodo} open={isTodoFormOpen} onClose={() => setIsTodoFormOpen(false)} />
     </div>
   );
