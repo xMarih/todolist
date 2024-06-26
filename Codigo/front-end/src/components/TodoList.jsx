@@ -87,6 +87,9 @@ export const TodoList = ({ task, deleteTodo, editTodo, saveTodo }) => {
           <IconButton onClick={() => handleEditOpen(task)}>
             <FontAwesomeIcon icon={faPenToSquare} />
           </IconButton>
+        </TableCell>
+
+        <TableCell>
           <IconButton onClick={handleDeleteOpen}>
             <FontAwesomeIcon icon={faTrash} />
           </IconButton>

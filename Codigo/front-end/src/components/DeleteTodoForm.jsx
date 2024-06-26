@@ -13,11 +13,11 @@ export const DeleteTodoForm = ({ open, onClose, onConfirm, taskTitle }) => {
     >
       <DialogTitle id="alert-dialog-title" style={{ display: 'flex', alignItems: 'center' }}>
         <FontAwesomeIcon icon={faTrashAlt} style={{ marginRight: 8 }} />
-        <Typography variant="h6">Delete task</Typography>
+        <Typography variant="h6">Excluir tarefa</Typography>
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          Are you sure you want to delete the task "{taskTitle}"?
+          Deseja excluir a tarefa "{taskTitle}"?
         </DialogContentText>
       </DialogContent>
       <DialogActions style={{ justifyContent: 'center' }}>

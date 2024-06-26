@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Modal, Box, TextField, Button, MenuItem, Select, InputLabel, FormControl, Typography } from "@mui/material";
+import { Modal, Box, TextField, Button, MenuItem, Select, InputLabel, FormControl, Typography, DialogTitle } from "@mui/material";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 export const TodoForm = ({ addTodo, open, onClose }) => {
   const [description, setDescription] = useState("");
@@ -27,9 +29,12 @@ export const TodoForm = ({ addTodo, open, onClose }) => {
   return (
     <Modal open={open} onClose={onClose}>
       <Box sx={{ ...modalStyle, width: 400 }}>
-        <Typography variant="h6" component="h2">
-          INSERIR NOVA TAREFA
-        </Typography>
+
+      <DialogTitle id="alert-dialog-title" style={{ display: 'flex', alignItems: 'center' }}>
+          <FontAwesomeIcon icon={faCirclePlus} style={{ marginRight: 8 }} />
+          <Typography variant="h6" component="h2">Criar Tarefa</Typography>
+        </DialogTitle>
+
         <form onSubmit={handleSubmit}>
           <TextField
             label="Descrição da Tarefa"
@@ -49,9 +54,9 @@ export const TodoForm = ({ addTodo, open, onClose }) => {
           <FormControl fullWidth margin="normal">
             <InputLabel>Tipo de Task</InputLabel>
             <Select value={taskType} onChange={(e) => setTaskType(e.target.value)}>
-              <MenuItem value="NOVIDADE">NOVIDADE</MenuItem>
-              <MenuItem value="BUG">BUG</MenuItem>
-              <MenuItem value="APRIMORAMENTO">APRIMORAMENTO</MenuItem>
+              <MenuItem value="NOVIDADE">1</MenuItem>
+              <MenuItem value="BUG">2</MenuItem>
+              <MenuItem value="APRIMORAMENTO">3</MenuItem>
             </Select>
           </FormControl>
           <FormControl fullWidth margin="normal">
@@ -85,7 +90,17 @@ export const TodoForm = ({ addTodo, open, onClose }) => {
               inputProps={{ min: 1 }}
             />
           )}
-          <Button type="submit" variant="contained" color="primary">
+          <Button type="submit" variant="outlined" color="primary"
+            sx={{
+              color: 'black',
+              borderColor: 'black',
+              backgroundColor: 'white',
+              '&:hover': {
+                backgroundColor: 'black',
+                color: 'white',
+                borderColor: 'black'
+              }
+            }}>
             Adicionar
           </Button>
         </form>

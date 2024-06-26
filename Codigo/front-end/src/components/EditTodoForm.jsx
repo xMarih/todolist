@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Box, TextField, Button, MenuItem, Select, InputLabel, FormControl, Typography } from "@mui/material";
+import { Modal, Box, TextField, Button, MenuItem, Select, InputLabel, FormControl, Typography, DialogTitle } from "@mui/material";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 export const EditTodoForm = ({ task, saveTodo, open, onClose }) => {
   const [description, setDescription] = useState(task.description);
@@ -43,9 +45,12 @@ export const EditTodoForm = ({ task, saveTodo, open, onClose }) => {
   return (
     <Modal open={open} onClose={onClose}>
       <Box sx={{ ...modalStyle, width: 400 }}>
-        <Typography variant="h6" component="h2">
-          ATUALIZAR TAREFA
-        </Typography>
+
+        <DialogTitle id="alert-dialog-title" style={{ display: 'flex', alignItems: 'center' }}>
+          <FontAwesomeIcon icon={faPenToSquare} style={{ marginRight: 8 }} />
+          <Typography variant="h6" component="h2">Editar tarefa</Typography>
+        </DialogTitle>
+
         <form onSubmit={handleSubmit}>
           <TextField
             label="Descrição da Tarefa"
@@ -65,9 +70,9 @@ export const EditTodoForm = ({ task, saveTodo, open, onClose }) => {
           <FormControl fullWidth margin="normal">
             <InputLabel>Tipo de Task</InputLabel>
             <Select value={taskType} onChange={(e) => setTaskType(e.target.value)}>
-              <MenuItem value="NOVIDADE">NOVIDADE</MenuItem>
-              <MenuItem value="BUG">BUG</MenuItem>
-              <MenuItem value="APRIMORAMENTO">APRIMORAMENTO</MenuItem>
+              <MenuItem value="NOVIDADE">1</MenuItem>
+              <MenuItem value="BUG">2</MenuItem>
+              <MenuItem value="APRIMORAMENTO">3</MenuItem>
             </Select>
           </FormControl>
           <FormControl fullWidth margin="normal">
@@ -101,7 +106,16 @@ export const EditTodoForm = ({ task, saveTodo, open, onClose }) => {
               inputProps={{ min: 1 }}
             />
           )}
-          <Button type="submit" variant="contained" color="primary">
+          <Button type="submit" variant="outlined" color="primary" sx={{
+            color: 'black',
+            borderColor: 'black',
+            backgroundColor: 'white',
+            '&:hover': {
+              backgroundColor: 'black',
+              color: 'white',
+              borderColor: 'black'
+            }
+          }}>
             Salvar
           </Button>
         </form>
